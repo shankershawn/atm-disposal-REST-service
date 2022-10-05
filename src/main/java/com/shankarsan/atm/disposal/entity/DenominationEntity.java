@@ -1,42 +1,35 @@
-/**
- * 
- */
-package com.shankarsan.atm.disposal.dto;
+package com.shankarsan.atm.disposal.entity;
 
-import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Positive;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-/**
- * @author SHANKARSAN
- *
- */
-public class DenominationRequestDTO extends BaseRequestDTO{
-
-	@JsonProperty("rfe") @NotBlank private String denominationName;
-	@JsonProperty("djq") @NotBlank private String denominationCurrencyCode;
-	@JsonProperty("bsi") @Positive private Long denominationValue;
-	@JsonProperty("elj") @NotBlank private String denominationType;
-	@JsonProperty("dce") private Date effectiveDate;
-//	@JsonProperty("cvf") @NotBlank private String denominationLegislationCode;
-//	
+@Entity(name = "DenominationEntity")
+@Table(name = "T_ATM_DENOMINATIONS")
+public class DenominationEntity extends BaseAuditEntity{
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "DENOMINATIONS_SEQ")
+	@SequenceGenerator(sequenceName = "S_ROW_ID", name = "DENOMINATIONS_SEQ", allocationSize = 1)
+	private Long denominationId;
+	private String denominationName;
+	private String denominationCurrencyCode;
+	private Long denominationValue;
+	private String denominationType;
+//	private String denominationLegislationCode;
+	
 //	public String getDenominationLegislationCode() {
 //		return denominationLegislationCode;
 //	}
 //	public void setDenominationLegislationCode(String denominationLegislationCode) {
 //		this.denominationLegislationCode = denominationLegislationCode;
 //	}
+	
 	public String getDenominationType() {
 		return denominationType;
-	}
-	public Date getEffectiveDate() {
-		return effectiveDate;
-	}
-	public void setEffectiveDate(Date effectiveDate) {
-		this.effectiveDate = effectiveDate;
 	}
 	public void setDenominationType(String denominationType) {
 		this.denominationType = denominationType;
@@ -77,5 +70,11 @@ public class DenominationRequestDTO extends BaseRequestDTO{
 	public void setDenominationValue(Long denominationValue) {
 		this.denominationValue = denominationValue;
 	}
-	
+	public Long getId() {
+		return denominationId;
+	}
+	public void setId(Long id) {
+		this.denominationId = id;
+	}
+
 }

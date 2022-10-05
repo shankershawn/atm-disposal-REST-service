@@ -3,7 +3,11 @@
  */
 package com.shankarsan.atm.disposal.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
+import org.springframework.util.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -15,14 +19,32 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BaseResponseDTO {
 	
-	protected int errorCode;
-	protected String errorMessage;
+	private List<String> userMesaages;
+	private List<String> errorMessages;
 	@JsonIgnore
-	protected HttpStatus httpStatus;
+	private HttpStatus httpStatus;
+	
+	public BaseResponseDTO() {
+		
+	}
+	
+	public BaseResponseDTO(String userMessage, String errorMessage, HttpStatus httpStatus) {
+		setHttpStatus(httpStatus);
+		setErrorMessages(errorMessage);
+		setUserMessages(userMessage);
+	}
+	
+	public List<String> getUserMesaages() {
+		if(null == userMesaages) {
+			userMesaages = new ArrayList<>();
+		}
+		return userMesaages;
+	}
+
 	/**
 	 * @param httpStatus the httpStatus to set
 	 */
-	protected void setHttpStatus(HttpStatus httpStatus) {
+	public void setHttpStatus(HttpStatus httpStatus) {
 		this.httpStatus = httpStatus;
 	}
 	/**
@@ -32,28 +54,27 @@ public class BaseResponseDTO {
 		return httpStatus;
 	}
 	/**
-	 * @return the errorCode
-	 */
-	public int getErrorCode() {
-		return errorCode;
-	}
-	/**
-	 * @param errorCode the errorCode to set
-	 */
-	protected void setErrorCode(int errorCode) {
-		this.errorCode = errorCode;
-	}
-	/**
 	 * @return the errorMessage
 	 */
-	public String getErrorMessage() {
-		return errorMessage;
+	public List<String> getErrorMessages() {
+		if(null == errorMessages) {
+			errorMessages = new ArrayList<>();
+		}
+		return errorMessages;
 	}
 	/**
 	 * @param errorMessage the errorMessage to set
 	 */
-	protected void setErrorMessage(String errorMessage) {
-		this.errorMessage = errorMessage;
+	public void setErrorMessages(String errorMessage) {
+		if(!StringUtils.isEmpty(errorMessage)) {
+			getErrorMessages().add(errorMessage);
+		}
+	}
+	
+	public void setUserMessages(String userMessage) {
+		if(!StringUtils.isEmpty(userMessage)) {
+			getUserMesaages().add(userMessage);
+		}
 	}
 
 }

@@ -3,7 +3,6 @@
  */
 package com.shankarsan.atm.disposal.dto;
 
-import java.math.BigDecimal;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -14,24 +13,24 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CashDisposalResponseDTO extends BaseResponseDTO {
-	private Map<Long, BigDecimal> cashMap = null;
+	private Map<Long, Long> cashMap = null;
 
-	public CashDisposalResponseDTO(int errorCode, String errorMessage) {
-		super.errorCode = errorCode;
-		super.errorMessage = errorMessage;
+	public CashDisposalResponseDTO(Map<Long, Long> cashMap) {
+		super();
+		this.cashMap = cashMap;
 	}
 
 	/**
 	 * @return the cashMap
 	 */
-	public Map<Long, BigDecimal> getCashMap() {
+	public Map<Long, Long> getCashMap() {
 		return cashMap;
 	}
 
 	/**
 	 * @param cashMap the cashMap to set
 	 */
-	public void setCashMap(Map<Long, BigDecimal> cashMap) {
+	public void setCashMap(Map<Long, Long> cashMap) {
 		this.cashMap = cashMap;
 	}
 	

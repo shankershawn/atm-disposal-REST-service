@@ -1,18 +1,16 @@
 package com.shankarsan.atm.disposal.constants;
 
-public class CommonConstants {
+public interface CommonConstants {
 	
-	public static final String MONGO_USERNAME = "spring.data.mongodb.username";
-	public static final String MONGO_PASSWORD = "spring.data.mongodb.password";
-	public static final String MONGO_DATABASE = "spring.data.mongodb.database";
-	public static final String MONGO_HOST = "spring.data.mongodb.host";
-	public static final String MONGO_PORT = "spring.data.mongodb.port";
-	public static final String MONGO_REPLICASET= "spring.data.mongodb.replica-set-name";
-	public static final String MONGO_AUTH_DB = "spring.data.mongodb.authentication-database";
-			
-			
-			
-			
-			
+	String MONGO_USERNAME = "spring.data.mongodb.username";
+	String MONGO_PASSWORD = "spring.data.mongodb.password";
+	String MONGO_DATABASE = "spring.data.mongodb.database";
+	String MONGO_HOST = "spring.data.mongodb.host";
+	String MONGO_PORT = "spring.data.mongodb.port";
+	String MONGO_REPLICASET= "spring.data.mongodb.replica-set-name";
+	String MONGO_AUTH_DB = "spring.data.mongodb.authentication-database";
+	
+	String COLON = ":";
+	String END_OF_TIME="4712-12-31"; 
 
 }
